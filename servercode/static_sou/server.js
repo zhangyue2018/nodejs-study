@@ -9,8 +9,9 @@ const fs = require('fs');
 
 const server = http.createServer((req, res) => {
     let {pathname} = new URL(req.url, 'http://127.0.0.1');
-    let fileName = __dirname + '/page' + pathname;
-
+    // 生命根目录变量
+    let root = __dirname + '/page';
+    let fileName = root + pathname;
     fs.readFile(fileName, (err, data) => {
         console.log('读取文件成功');
         if(err) {
