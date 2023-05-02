@@ -6,3 +6,8 @@
     如果main属性不存在，或者package.json文件不存在，则会尝试导入文件夹下的index.js（第一顺序）和index.json（第二顺序）文件；
     如果还是没找到则会报错
 5. 导入nodejs内置模块时，直接require模块的名字即可，无需./和../
+
+
+# require导入npm包的基本流程
+1. 在当前文件夹下的node_modules中寻找同名的文件夹（即：require的参数其实是文件夹名(包名)）
+2. 若1没有找到，则前往上级目录中的node_modules中寻找同名的文件夹，直至找到磁盘根目录
