@@ -36,7 +36,14 @@ const server = http.createServer((req, res) => {
         const ext = path.extname(fileName).slice(1);
         const type = mimes[ext];
         if(type) {
-            res.setHeader('content-type', type);
+            if(ext === 'html') {
+                // html文件里可以设置charset，但是服务端设置的响应头setHeader中的charset的优先级高于html文件中设置的charset
+                res.setHeader('content-type', type + ';charset=utf-8');
+            } else {
+                // 对于css，js，图片等，如果没有设置charset，则会根据网页html的charset进行解析
+                res.setHeader('content-type', type);
+            }
+            
         } else {
             // 对于未知的资源类型，可以选择'application/octet-stream'类型，浏览器在遇到该类型的响应时
             // 会对响应体内容进行独立存储，也就是常见的瞎咋效果
