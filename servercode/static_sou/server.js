@@ -21,6 +21,11 @@ const mimes = {
 }
 
 const server = http.createServer((req, res) => {
+    if(req.method !== 'GET') {
+        res.statusCode = 405;
+        res.end('<h1>405 Method Not Allowed</h1>');
+        return;
+    }
     let {pathname} = new URL(req.url, 'http://127.0.0.1');
     // 生命根目录变量
     let root = __dirname + '/page';
@@ -28,9 +33,20 @@ const server = http.createServer((req, res) => {
     fs.readFile(fileName, (err, data) => {
         console.log('读取文件成功');
         if(err) {
-            res.statusCode = 500;
             res.setHeader('content-type', 'text/html;charset=utf-8');
-            res.end('没有找到');
+            switch(err.code) {
+                case 'ENOENT':
+                    res.statusCode = 404;
+                    res.end('<h1>404 Not Found</h1>');
+                    break;
+                case 'EPERM':
+                    res.statusCode = 403;
+                    res.end('<h1>403 Forbidden</h1>');
+                    break;
+                default:
+                    res.statusCode = 500;
+                    res.end('<h1>500 Server Internal Error<h1/>');
+            }
             return;
         }
         const ext = path.extname(fileName).slice(1);
