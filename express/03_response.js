@@ -21,6 +21,23 @@ app.get('/request', (req, res) => {
     res.status(500).set('aaa', 'ccc').send('这都是OK的');
 });
 
+app.get('/other', (req, res) => {
+    // 跳转响应
+    // res.redirect('http://www.baidu.com');
+    
+    // 下载响应
+    // res.download(__dirname + '/01_form.html');
+
+    // JSON响应
+    // res.json({
+    //     name: '尚硅谷',
+    //     slogon: '让天下没有难学的技术'
+    // });
+
+    // 响应文件内容
+    res.sendFile(__dirname + '/01_code.js');
+});
+
 
 app.listen(9000, () => {
     console.log('服务已启动~~');
