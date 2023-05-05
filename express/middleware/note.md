@@ -19,3 +19,18 @@ let recordMiddleware = function(request, response, next) {
     // 执行next函数（当如果希望执行完中间件函数之后，仍然继续执行路由中的回调函数，必须调用next）
     next();
 }
+
+## 静态资源中间件
+express内置处理静态资源的中间件
+const express = require('express');
+const app = express();
+app.use(express.static('.public'));
+
+注：
+1.index.html文件为默认打开的资源，如果public中有index.html，则此html默认为网站首页
+2.如果静态资源与路由规则同事匹配，谁先匹配谁就响应。
+app.get('/', (req, res) =>  {});
+与
+app.use(express.static('.public'));
+谁在前就是谁先响应.
+
