@@ -98,7 +98,20 @@ mongoose.connection.once('open', () => {
     // 更新一个文档--即使匹配上多个文档,也只会更新第一个匹配的文档
     // BookModel.updateOne({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
     // 更新多个文档
-    BookModel.updateMany({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
+    // BookModel.updateMany({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
+
+    // 读取文档
+    // 读取单条文档
+    // BookModel.findOne({price: 19.9}).then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+    
+    // 按照id读取
+    // BookModel.findById('645651c37cc2f1ef9eff48b0').then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+    
+    // 批量读取-1
+    BookModel.find({price: 19.9}).then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+    // 批量读取-2
+    BookModel.find().then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+
 
 });
 
