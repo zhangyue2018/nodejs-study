@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
 module.exports = function(successCallback, errCallback) {
+
+    if(!errCallback) {
+        errCallback = () => {console.log('连接失败!!!!!')}
+    }
+
+    const { DBHOST, DBPORT, DBNAME } = require('../config/config');
     // 连接mongodb服务
     // 端口号27017是mongod服务默认监听的端口号，此处使用默认的端口号，也可以不写
     // bilibili数据库如果不存在，会自动创建一个
-    mongoose.connect('mongodb://127.0.0.1:27017/bilibili');
+    mongoose.connect('mongodb://' + DBHOST + ':' + DBPORT + '/' + DBNAME);
 
     // 设置回调
     // 设置连接成功的回调
