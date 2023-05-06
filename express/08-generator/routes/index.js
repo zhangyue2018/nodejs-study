@@ -6,4 +6,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/portrait', function(req, res, next) {
+    res.render('portrait');
+});
+
+router.post('/portrait', (req, res, next) => {
+    res.send('成功');
+});
+
+
+
+
 module.exports = router;
