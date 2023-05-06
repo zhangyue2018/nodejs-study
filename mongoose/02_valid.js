@@ -96,7 +96,7 @@ mongoose.connection.once('open', () => {
 
     // 更新集合中的文档
     // 更新一个文档--即使匹配上多个文档,也只会更新第一个匹配的文档
-    // BookModel.updateOne({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
+    // BookModel.updateOne({author: '未知'}, {price: 25.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
     // 更新多个文档
     // BookModel.updateMany({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
 
@@ -128,7 +128,24 @@ mongoose.connection.once('open', () => {
     // 逻辑或
     // BookModel.find({$or: [{author: '罗贯中'}, {author: '曹雪芹'}]}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
     // 逻辑与
-    BookModel.find({$and: [{author: '罗贯中'}, {price: {$lt: 30}}]}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
+    // BookModel.find({$and: [{author: '罗贯中'}, {price: {$lt: 30}}]}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
+
+    // 个性化读取
+    // 字段筛选
+    // BookModel.find().select({name: 1, author: 1, _id: 0}).then(res => console.log(res), err => console.log(err));
+    
+    // 数据排序 sort({price:1}):升序, sort({price:-1}):降序
+    // BookModel.find().select({name: 1, author: 1, _id: 0}).sort({price: -1}).then(res => console.log(res), err => console.log(err));
+    
+    // 数据的截取
+    // limit(n):截取前n个数据
+    // skip(n):跳过前n个,取剩下的数据
+    BookModel.find()
+        .select({name: 1, author: 1, _id: 0})
+        .sort({price: -1})
+        .skip(1)
+        .limit(3)
+        .then(res => console.log(res), err => console.log(err));
 
 
 
