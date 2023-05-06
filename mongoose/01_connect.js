@@ -8,6 +8,33 @@ mongoose.connect('mongodb://127.0.0.1:27017/bilibili');
 // 设置连接成功的回调
 mongoose.connection.once('open', () => {
     console.log('连接成功');
+    // 创建文档的结构对象
+    // 设置集合中文档的属性以及属性值的类型
+    let bookSchema = new mongoose.Schema({
+        name: String,
+        author: String,
+        price: Number
+    });
+
+    // 创建模型对象--对文档操作的封装对象
+    // model(集合名称, 结构对象);
+    let BookModel = mongoose.model('books', bookSchema);
+
+    // 新增
+    BookModel.create({
+        name: '西游记',
+        author: '吴承恩',
+        price: 9.9
+    }).then(res => {
+        console.log('res---', res);
+    }, err => {
+        console.log('Error---', err);
+    }).finally(() => {
+        // 关闭数据库连接
+        // 项目运行过程中不会添加此代码
+        mongoose.disconnect();
+    });
+
 });
 
 // 设置连接错误的回调
