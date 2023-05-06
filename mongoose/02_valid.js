@@ -108,9 +108,28 @@ mongoose.connection.once('open', () => {
     // BookModel.findById('645651c37cc2f1ef9eff48b0').then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
     
     // 批量读取-1
-    BookModel.find({price: 19.9}).then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+    // BookModel.find({price: 19.9}).then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
     // 批量读取-2
-    BookModel.find().then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+    // BookModel.find().then(res => console.log('读取成功----', res), err => console.log('读取失败----', err));
+
+    // 条件控制
+    // mongodb不能直接使用<, >, 等符号,需要使用替代符号
+    /**
+     * > : $gt
+     * < : $lt
+     * >= : $gte
+     * <= : $lte
+     * !== : $ne
+     * 逻辑或: $or
+     * 逻辑与: $and
+     */
+    // price小于20
+    // BookModel.find({price: {$lt: 20}}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
+    // 逻辑或
+    // BookModel.find({$or: [{author: '罗贯中'}, {author: '曹雪芹'}]}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
+    // 逻辑与
+    BookModel.find({$and: [{author: '罗贯中'}, {price: {$lt: 30}}]}).then(res => console.log('找到了---', res), err => console.log('没找到----', err));
+
 
 
 });
