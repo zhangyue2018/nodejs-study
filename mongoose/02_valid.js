@@ -41,18 +41,64 @@ mongoose.connection.once('open', () => {
     //     console.log('res---', res);
     // }, err => {
     //     console.log('Error---', err);
-    // }).finally(() => {
-    //     // 关闭数据库连接
-    //     // 项目运行过程中不会添加此代码
-    //     mongoose.disconnect();
-    // });
+    // })
+
+    // BookModel.create({
+    //     name: '西游记',
+    //     author: '吴承恩',
+    //     style: '志怪',
+    //     price: 9.9
+    // }).then(res => {
+    //     console.log('res---', res);
+    // }, err => {
+    //     console.log('Error---', err);
+    // })
+
+    // BookModel.create({
+    //     name: '水浒传',
+    //     author: '施耐庵',
+    //     style: '武侠',
+    //     price: 9.9
+    // }).then(res => {
+    //     console.log('res---', res);
+    // }, err => {
+    //     console.log('Error---', err);
+    // })
+
+    // BookModel.create({
+    //     name: '三国演义',
+    //     author: '罗贯中',
+    //     style: '军事',
+    //     price: 9.9
+    // }).then(res => {
+    //     console.log('res---', res);
+    // }, err => {
+    //     console.log('Error---', err);
+    // })
+
+    // BookModel.create({
+    //     name: '白蛇传',
+    //     author: '未知',
+    //     style: '言情',
+    //     price: 9.9
+    // }).then(res => {
+    //     console.log('res---', res);
+    // }, err => {
+    //     console.log('Error---', err);
+    // })
 
     // 删除
     // 删除一个--即使匹配上多个文档,也只会删除第一个匹配的文档
     // BookModel.deleteOne({price: 9.9}).then(res => console.log('删除成功---', res), err => console.log('删除失败---', err));
 
     // 删除多个
-    BookModel.deleteMany({price: 9.9}).then(res => console.log('删除成功---', res), err => console.log('删除失败----', err));
+    // BookModel.deleteMany({price: 9.9}).then(res => console.log('删除成功---', res), err => console.log('删除失败----', err));
+
+    // 更新集合中的文档
+    // 更新一个文档--即使匹配上多个文档,也只会更新第一个匹配的文档
+    // BookModel.updateOne({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
+    // 更新多个文档
+    BookModel.updateMany({price: 9.9}, {price: 19.9}).then(res => console.log('更新成功--', res), err => console.log('更新失败----', err));
 
 });
 
