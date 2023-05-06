@@ -22,7 +22,7 @@ mongoose.connection.once('open', () => {
         },
         style: {
             type: String,
-            enum: ['言情', '志怪', '恐怖', '励志']  // 枚举类型
+            enum: ['言情', '志怪', '恐怖', '励志', '武侠', '历史', '军事', '人文']  // 枚举类型
         },
         price: Number
     });
@@ -32,20 +32,27 @@ mongoose.connection.once('open', () => {
     let BookModel = mongoose.model('books', bookSchema);
 
     // 新增
-    BookModel.create({
-        name: '西游记',
-        author: '吴承恩',
-        style: '志怪',
-        price: 9.9
-    }).then(res => {
-        console.log('res---', res);
-    }, err => {
-        console.log('Error---', err);
-    }).finally(() => {
-        // 关闭数据库连接
-        // 项目运行过程中不会添加此代码
-        mongoose.disconnect();
-    });
+    // BookModel.create({
+    //     name: '红楼梦',
+    //     author: '曹雪芹',
+    //     style: '言情',
+    //     price: 9.9
+    // }).then(res => {
+    //     console.log('res---', res);
+    // }, err => {
+    //     console.log('Error---', err);
+    // }).finally(() => {
+    //     // 关闭数据库连接
+    //     // 项目运行过程中不会添加此代码
+    //     mongoose.disconnect();
+    // });
+
+    // 删除
+    // 删除一个--即使匹配上多个文档,也只会删除第一个匹配的文档
+    // BookModel.deleteOne({price: 9.9}).then(res => console.log('删除成功---', res), err => console.log('删除失败---', err));
+
+    // 删除多个
+    BookModel.deleteMany({price: 9.9}).then(res => console.log('删除成功---', res), err => console.log('删除失败----', err));
 
 });
 
@@ -59,7 +66,7 @@ mongoose.connection.on('close', () => {
     console.log('连接关闭');
 });
 
-// setTimeout(() => {
-//     // 关闭mongodb连接
-//     mongoose.disconnect();
-// }, 3000);
+setTimeout(() => {
+    // 关闭mongodb连接
+    mongoose.disconnect();
+}, 3000);
