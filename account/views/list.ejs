@@ -14,7 +14,7 @@
         <p>
             <% accounts.forEach((item) => { %>
                 <div class="common <%= item.type == 1 ? 'income' : 'pay' %>">
-                    <div class="date"><%= item.time %></div>
+                    <div class="date"><%= moment(item.time).format('YYYY-MM-DD') %></div>
                     <div class="description">
                         <span class="action"><%= item.title %></span>
                         <span class="type">
