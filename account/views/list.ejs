@@ -21,7 +21,7 @@
                             <span><%= item.type == 1 ? '收入' : '支出' %></span>
                         </span>
                         <span class="amount"><%= item.account %>元</span>
-                        <button class="close">X</button>
+                        <a href="/account/<%= item.id %>"><button class="close">X</button></a>
                     </div>
                 </div>                
             <% }) %>

@@ -56,6 +56,13 @@
     width: 30%;
 }
 
+.description a {
+    display: inline-block;
+    width: 15%;
+    border: none;
+    background-color: transparent;
+    text-align: right;
+}
 .description .close {
     width: 15%;
     border: none;

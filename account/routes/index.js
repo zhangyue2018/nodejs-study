@@ -33,6 +33,12 @@ router.get('/account', function(req, res, next) {
   res.render('list', {accounts});
 });
 
+router.get('/account/:id', (req, res) => {
+    let id = req.params.id;
+    console.log('id---', id);
+    res.render('success', {msg: '删除成功', url: '/account'});
+});
+
 router.get('/account/create', function(req, res, next) {
     res.render('create');
 });
