@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>success</title>
+    <style>
+        .container {
+            width: 60%;
+            background-color: rgb(185, 255, 167);
+            padding: 20px 10px;
+            margin: 100px auto;
+        }
+        .alert {
+            color: rgb(103, 197, 94);
+        }
+        .alert h1 {
+            font-size: 50px;
+        }
+        .alert p {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="alert">
+            <h1>:) <%= msg %></h1>
+            <p><a href="<%= url %>">点击跳转</a></p>
+        </div>
+    </div>
+</body>
+</html>

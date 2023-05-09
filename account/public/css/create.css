@@ -1,0 +1,59 @@
+.content {
+    width: 50%;
+    margin: auto;
+}
+.common {
+    border: 1px solid #dfd5d5;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.common .date {
+    padding: 10px;;
+}
+
+form label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+form div {
+    text-align: center;
+    height: 40px;
+}
+
+form div button {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    background-color: rgb(68, 212, 223);
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+label + input {
+    height: 26px;
+    width: 100%;
+    border: 1px solid #b1b1b1;
+    border-radius: 4px;
+    margin-bottom: 18px;
+}
+
+label + textarea {
+    width: 100%;
+    border: 1px solid #b1b1b1;
+    border-radius: 4px;
+    margin-bottom: 18px;
+}
+
+label + select {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 18px;
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline-color: rgb(255, 187, 1);
+}
+
