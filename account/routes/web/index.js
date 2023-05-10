@@ -1,6 +1,6 @@
 var express = require('express');
 const moment = require('moment');
-const AccountModel = require('../models/AccountModel');
+const AccountModel = require('../../models/AccountModel');
 var router = express.Router();
 
 /* GET home page. */
