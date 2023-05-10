@@ -9,7 +9,10 @@
 </head>
 <body>
     <div class="content">
-        <h2 class="title">记账本</h2>
+        <div class="header">
+            <h2 class="title">记账本</h2>
+            <a href="/account/create" class="create">添加记录</a>
+        </div>
         <hr />
         <p>
             <% accounts.forEach((item) => { %>
@@ -27,6 +30,21 @@
             <% }) %>
         </p>
     </div>
+
+    <script>
+        let deleteBtns = document.querySelectorAll('a > .close');
+        if(deleteBtns.length) {
+            deleteBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    if(confirm('您确定要删除该文档吗？')) {
+                        return true;
+                    } else {
+                        e.preventDefault();
+                    }
+                });
+            });
+        }
+    </script>
     
 </body>
 </html>

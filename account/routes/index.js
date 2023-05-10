@@ -48,8 +48,12 @@ router.get('/account/create', function(req, res, next) {
 
 router.get('/account/:id', (req, res) => {
     let id = req.params.id;
-    console.log('id---', id);
-    res.render('success', {msg: '删除成功', url: '/account'});
+
+    AccountModel.deleteOne({_id: id}).then(data => {
+        res.render('success', {msg: '删除成功', url: '/account'});
+    }, err => {
+        res.status(500).send('删除失败!!');
+    });
 });
 
 router.post('/account', (req, res) => {
