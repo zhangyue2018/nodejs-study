@@ -40,4 +40,12 @@ router.post('/login', (req, res) => {
         res.status(500).send('登录失败，用户名或密码不对');
     });
 });
+
+// 退出登录
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/login');
+    });
+});
+
 module.exports = router;

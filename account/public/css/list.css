@@ -21,6 +21,14 @@
     border: 1px solid #666;
     text-decoration: none;
 }
+a:first-of-type {
+    margin-right: 20px;
+    margin-left: auto;
+}
+a:last-child {
+    width: 50px;
+    background-color: #c75454;
+}
 .header a:hover {
     cursor: pointer;
 }
