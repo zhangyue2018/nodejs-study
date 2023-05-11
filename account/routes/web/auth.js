@@ -30,7 +30,12 @@ router.post('/login', (req, res) => {
     let {username, password} = req.body;
     UserModel.findOne({username, password: md5(password)}).then(data => {
         if(!data) res.send('账号或密码错误~~~~');
-        else res.redirect('/account');  // 登陆成功后，跳转到对应的页面
+        else {
+            // 写入session
+            req.session.username = data.username;
+            req.session._id = data._id;
+            res.redirect('/account');  // 登陆成功后，跳转到对应的页面
+        }
     }, err => {
         res.status(500).send('登录失败，用户名或密码不对');
     });
