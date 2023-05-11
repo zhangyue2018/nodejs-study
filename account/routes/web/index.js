@@ -3,8 +3,11 @@ const moment = require('moment');
 const AccountModel = require('../../models/AccountModel');
 var router = express.Router();
 
+// 声明中间件检测登录
+let checkLoginMiddleware = require('../../middleware/checkLoginMiddleware');
+
 /* GET home page. */
-router.get('/account', function(req, res, next) {
+router.get('/account', checkLoginMiddleware, function(req, res, next) {
 
     let accounts = [
         {
@@ -42,11 +45,11 @@ router.get('/account', function(req, res, next) {
   
 });
 
-router.get('/account/create', function(req, res, next) {
+router.get('/account/create', checkLoginMiddleware, function(req, res, next) {
     res.render('create');
 });
 
-router.get('/account/:id', (req, res) => {
+router.get('/account/:id', checkLoginMiddleware, (req, res) => {
     let id = req.params.id;
 
     AccountModel.deleteOne({_id: id}).then(data => {
@@ -56,7 +59,7 @@ router.get('/account/:id', (req, res) => {
     });
 });
 
-router.post('/account', (req, res) => {
+router.post('/account', checkLoginMiddleware, (req, res) => {
     console.log('req.body---', req.body);
     AccountModel.create({
         ...req.body,
