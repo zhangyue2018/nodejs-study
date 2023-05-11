@@ -18,4 +18,21 @@ router.post('/reg', (req, res) => {
         res.status(500).send('注册失败，请稍后再试');
     });
 });
+
+
+router.get('/login', (req, res) => {
+    res.render('auth/login');
+});
+
+// 用户登录
+router.post('/login', (req, res) => {
+    console.log(req.body);
+    let {username, password} = req.body;
+    UserModel.findOne({username, password: md5(password)}).then(data => {
+        if(!data) res.send('账号或密码错误~~~~');
+        else res.redirect('/account');  // 登陆成功后，跳转到对应的页面
+    }, err => {
+        res.status(500).send('登录失败，用户名或密码不对');
+    });
+});
 module.exports = router;
