@@ -6,6 +6,7 @@ var router = express.Router();
 
 // 记账本的列表
 router.get('/account', checkTokenMiddleware, function(req, res, next) {
+    console.log('/account---', req);
     AccountModel.find().then(data => {
         res.json({
             code: '0000',

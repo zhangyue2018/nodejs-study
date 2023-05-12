@@ -17,6 +17,9 @@ module.exports = function(req, res, next) {
                 msg: '校验失败',
                 data: null
             });
-        } else next();
+        } else {
+            req.user = data;
+            next();
+        }
     });
 }
