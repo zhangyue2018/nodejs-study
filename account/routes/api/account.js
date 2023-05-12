@@ -1,10 +1,11 @@
 var express = require('express');
 const moment = require('moment');
 const AccountModel = require('../../models/AccountModel');
+const checkTokenMiddleware = require('../../middleware/checkTokenMiddelware');
 var router = express.Router();
 
 // 记账本的列表
-router.get('/account', function(req, res, next) {
+router.get('/account', checkTokenMiddleware, function(req, res, next) {
     AccountModel.find().then(data => {
         res.json({
             code: '0000',
@@ -13,15 +14,14 @@ router.get('/account', function(req, res, next) {
         });
     }, err => {
         res.json({
-           code: '1001',
-           msg: '读取失败',
-           data: null
+            code: '1001',
+            msg: '读取失败',
+            data: null
         });
     });
-  
 });
 // 删除记录
-router.delete('/account/:id', (req, res) => {
+router.delete('/account/:id', checkTokenMiddleware, (req, res) => {
     let id = req.params.id;
 
     AccountModel.deleteOne({_id: id}).then(data => {
@@ -39,7 +39,7 @@ router.delete('/account/:id', (req, res) => {
     });
 });
 // 新增记录
-router.post('/account', (req, res) => {
+router.post('/account', checkTokenMiddleware, (req, res) => {
     console.log('req.body---', req.body);
     AccountModel.create({
         ...req.body,
@@ -60,7 +60,7 @@ router.post('/account', (req, res) => {
     });
 });
 // 获取单个账单信息
-router.get('/account/:id', (req, res) => {
+router.get('/account/:id', checkTokenMiddleware, (req, res) => {
     let id = req.params.id;
     AccountModel.findById({_id: id}).then(data => {
         res.json({
@@ -78,7 +78,7 @@ router.get('/account/:id', (req, res) => {
 });
 
 // 更新单个账单信息
-router.patch('/account/:id', (req, res) => {
+router.patch('/account/:id', checkTokenMiddleware, (req, res) => {
     let id = req.params.id;
     AccountModel.updateOne({_id: id}, req.body)
         .then(data => {
