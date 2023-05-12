@@ -1,10 +1,14 @@
 var express = require('express');
 const moment = require('moment');
 const AccountModel = require('../../models/AccountModel');
-var router = express.Router();
-
 // 声明中间件检测登录
 let checkLoginMiddleware = require('../../middleware/checkLoginMiddleware');
+
+var router = express.Router();
+// 首页
+router.get('/', (req, res) => {
+    res.redirect('/account');
+});
 
 /* GET home page. */
 router.get('/account', checkLoginMiddleware, function(req, res, next) {
